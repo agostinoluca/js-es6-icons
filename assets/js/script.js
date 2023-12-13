@@ -163,4 +163,13 @@ iconsList.forEach(icon => {
     containerEl.append(card); 
     card.append(cardIcon);
     card.append(cardTitle);
+
+    // creo una condizione per assegnare un colore alle icone
+    if (icon.color === 'blue') {
+        cardIcon.classList.add('user');        
+    } else if (icon.color === 'green') {
+        cardIcon.classList.add('vegetable');
+    } else {
+        cardIcon.classList.add('animal');
+    }
 });
