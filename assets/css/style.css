@@ -3,3 +3,47 @@
     margin: 0;
     box-sizing: border-box;
 }
+
+header,
+nav {
+    height: 4.5rem;
+}
+
+nav {
+    background-color: deepskyblue;
+    color: white;
+}
+
+main {
+    background-color: #ededed;
+    height: calc(100vh - 9rem);
+}
+
+.cardAwesome {
+    background-color: rgb(250, 250, 250);
+    border-radius: 0.75rem;
+    text-align: center;
+    padding: 1rem 1.5rem;
+    margin-bottom: 3rem;
+    width: calc((100% / 5) - 3rem);
+    box-shadow: 0.25rem 0.25rem 0.25rem rgb(126, 125, 125);
+    & i {
+        font-size: 2.5rem;
+        padding-bottom: 0.25rem;
+    };
+    & h6 {
+        text-transform: uppercase;
+    };
+}
+
+.vegetable {
+    color: orange;
+}
+
+.animal {
+    color: blue;
+}
+
+.user {
+    color: blueviolet;
+}

@@ -134,3 +134,15 @@ const iconsList = [
 	}
 ];
 
+// collego tramite id un container del file html
+
+
+// con un for loop creo un box per ogni oggetto della array
+
+// markup
+/* 
+    <div class="cardAwesome">
+        <i></i>
+        <h6></h6>
+    </div>
+*/
