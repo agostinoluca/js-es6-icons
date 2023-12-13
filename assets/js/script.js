@@ -173,3 +173,16 @@ iconsList.forEach(icon => {
         cardIcon.classList.add('animal');
     }
 });
+
+// inserisco il select in una costante
+const iconSelect = document.getElementById('iconSelect');
+
+// itero per creare le opzioni (IN LAVORAZIONE, APPROCCIO PROBABILMENTE NON CORRETTO)
+iconsList.forEach(optionIcons => {
+    const optionIcon = document.createElement("option");
+
+    optionIcon.innerText = optionIcons.type;
+
+    iconSelect.append(optionIcon);
+    
+});
