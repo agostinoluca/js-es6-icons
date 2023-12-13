@@ -135,14 +135,32 @@ const iconsList = [
 ];
 
 // collego tramite id un container del file html
-
+const containerEl = document.getElementById('cardContainer');
 
 // con un for loop creo un box per ogni oggetto della array
+iconsList.forEach(icon => {
+    console.log(icon.name);
 
-// markup
-/* 
-    <div class="cardAwesome">
-        <i></i>
-        <h6></h6>
-    </div>
-*/
+    // creo gli elementi da inserire al contenitore
+    const card = document.createElement("div");
+    const cardIcon = document.createElement("i");
+    const cardTitle = document.createElement("h6");
+
+
+    // aggiungo la classe al div creato per creare la card
+    card.classList.add('cardAwesome');
+
+
+    // inserisco le classi delle icone
+    cardIcon.classList.add(icon.prefix + icon.name);
+    cardIcon.classList.add('fa-solid');
+
+
+    // inserisco i nomi delle icone al titolo h6 della card
+    cardTitle.innerText = icon.name;
+
+    // con append inserisco la card, l'icona e il titolo al containerEl
+    containerEl.append(card); 
+    card.append(cardIcon);
+    card.append(cardTitle);
+});
