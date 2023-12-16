@@ -214,10 +214,30 @@ function createIcon(icon) {
 	
 	// creo una condizione per assegnare un colore alle icone
 	if (icon.color === 'blue') {			
-		cardIcon.classList.add('user');        
+		// cardIcon.classList.add('user');
+		cardIcon.style.color = hexRandomColor();
 	} else if (icon.color === 'green') {
-		cardIcon.classList.add('vegetable');
+		// cardIcon.classList.add('vegetable');
+		cardIcon.style.color = hexRandomColor();
 	} else {
-		cardIcon.classList.add('animal');
+		// cardIcon.classList.add('animal');
+		cardIcon.style.color = hexRandomColor();
 	}
-}
+};
+
+// funzione per creare un colore casuale in esadecimale
+function hexRandomColor() {
+	// inserisco in costante i caratteri utilizzati dai colori HEX
+	const characters = '0123456789ABCDEF';
+
+	// inizializzo la variabile del colore con il cancelletto
+	let color = '#';
+	
+	// itero per 6 volte tutti i caratteri
+	for (let i = 0; i < 6; i++) {
+		// aggiungo alla variabile color le 6 cifre ottenute arrotondando per difetto
+		color += characters[Math.floor(Math.random() * 16)]; 
+	}
+	// faccio il return della variabile finalizzata
+	return color;
+  }
