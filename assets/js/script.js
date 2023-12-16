@@ -16,8 +16,6 @@ BONUS 2
 
 */
 
-console.log('Hello World');
-
 // creo l'array di oggetti con i dati forniti
 const iconsList = [
 	{
@@ -137,52 +135,89 @@ const iconsList = [
 // collego tramite id un container del file html
 const containerEl = document.getElementById('cardContainer');
 
-// con un for loop creo un box per ogni oggetto della array
+// utilizzo una funzione per creare e stampare tutte le icone
 iconsList.forEach(icon => {
-    console.log(icon.name);
-
-    // creo gli elementi da inserire al contenitore
-    const card = document.createElement("div");
-    const cardIcon = document.createElement("i");
-    const cardTitle = document.createElement("h6");
-
-
-    // aggiungo la classe al div creato per creare la card
-    card.classList.add('cardAwesome');
-
-
-    // inserisco le classi delle icone
-    cardIcon.classList.add(icon.prefix + icon.name);
-    cardIcon.classList.add('fa-solid');
-
-
-    // inserisco i nomi delle icone al titolo h6 della card
-    cardTitle.innerText = icon.name;
-
-    // con append inserisco la card, l'icona e il titolo al containerEl
-    containerEl.append(card); 
-    card.append(cardIcon);
-    card.append(cardTitle);
-
-    // creo una condizione per assegnare un colore alle icone
-    if (icon.color === 'blue') {
-        cardIcon.classList.add('user');        
-    } else if (icon.color === 'green') {
-        cardIcon.classList.add('vegetable');
-    } else {
-        cardIcon.classList.add('animal');
-    }
+	createIcon(icon);
 });
 
 // inserisco il select in una costante
 const iconSelect = document.getElementById('iconSelect');
 
-// itero per creare le opzioni (IN LAVORAZIONE, APPROCCIO PROBABILMENTE NON CORRETTO)
-iconsList.forEach(optionIcons => {
-    const optionIcon = document.createElement("option");
+// aggiungo un addEventListener('change') al select
+iconSelect.addEventListener('change', function(){
 
-    optionIcon.innerText = optionIcons.type;
+	// creo una variabile per leggere la value select
+	let valueType = iconSelect.value;
 
-    iconSelect.append(optionIcon);
-    
+	// svuotare l`html del container, altrimenti aggiunge le card a quelle già esistenti
+	containerEl.innerHTML = '';
+	
+	// con un for loop creo un box per ogni oggetto della array
+	iconsList.forEach(icon => {
+		
+		// la condizione filtra il tipo dell'icona identico al select oppure il campo vuoto dell'opzione ALL
+		if (icon.type === valueType || valueType === '') {
+
+			// richiamo la funzione per creare le card delle icone selezionate dal select
+			createIcon(icon);
+		}
+	});
+	
 });
+
+
+// creo un array dedicata al menù select
+let optionList = [];
+
+// itero per creare le opzioni
+iconsList.forEach(optionIcons => {
+		
+	// creo una condizione con valore booleano opposto per stabilire se l`array contiene o meno il tipo di icona 
+	if (!optionList.includes(optionIcons.type)) {
+		// se non lo contiene pusha nella array l'opzione
+		optionList.push(optionIcons.type);
+		// creo l'opzione
+		const optionIcon = document.createElement("option");
+		// scrivo dentro l'opzione
+		optionIcon.innerText = optionIcons.type;
+		// collego al mio html l'opzione appena creata
+		iconSelect.append(optionIcon);
+	}
+	
+});
+
+
+// funzione per creare i box delle icone
+function createIcon(icon) {
+	// creo gli elementi da inserire al contenitore
+	const card = document.createElement("div");			// crea la card
+	const cardIcon = document.createElement("i");		// crea l`icona
+	const cardTitle = document.createElement("h6");		// crea il titolo dell`icona
+	
+	
+	// aggiungo la classe al div creato per creare la card
+	card.classList.add('cardAwesome');
+	
+	
+	// inserisco le classi delle icone
+	cardIcon.classList.add(icon.prefix + icon.name);	// aggiunge il tipo d'icona
+	cardIcon.classList.add('fa-solid');					// aggiunge stile all`icona
+	
+	
+	// inserisco i nomi delle icone al titolo h6 della card
+	cardTitle.innerText = icon.name;
+	
+	// con append inserisco la card, l'icona e il titolo al containerEl
+	containerEl.append(card);	// appendo il box
+	card.append(cardIcon);		// appendo l'icona
+	card.append(cardTitle);		// appendo il titolo
+	
+	// creo una condizione per assegnare un colore alle icone
+	if (icon.color === 'blue') {			
+		cardIcon.classList.add('user');        
+	} else if (icon.color === 'green') {
+		cardIcon.classList.add('vegetable');
+	} else {
+		cardIcon.classList.add('animal');
+	}
+}
