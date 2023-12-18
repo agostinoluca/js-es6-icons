@@ -132,6 +132,11 @@ const iconsList = [
 	}
 ];
 
+// creo delle variabili per la futura assegnazione del colore casuale per categoria di icona
+let animalColor = hexRandomColor();
+let userColor = hexRandomColor();
+let vegetableColor = hexRandomColor();
+
 // collego tramite id un container del file html
 const containerEl = document.getElementById('cardContainer');
 
@@ -213,15 +218,15 @@ function createIcon(icon) {
 	card.append(cardTitle);		// appendo il titolo
 	
 	// creo una condizione per assegnare un colore alle icone
-	if (icon.color === 'blue') {			
+	if (icon.type === 'animal') {			
 		// cardIcon.classList.add('user');
-		cardIcon.style.color = hexRandomColor();
-	} else if (icon.color === 'green') {
+		cardIcon.style.color = animalColor;
+	} else if (icon.type === 'user') {
 		// cardIcon.classList.add('vegetable');
-		cardIcon.style.color = hexRandomColor();
+		cardIcon.style.color = userColor;
 	} else {
 		// cardIcon.classList.add('animal');
-		cardIcon.style.color = hexRandomColor();
+		cardIcon.style.color = vegetableColor;
 	}
 };
 
@@ -240,4 +245,4 @@ function hexRandomColor() {
 	}
 	// faccio il return della variabile finalizzata
 	return color;
-  }
+  };
